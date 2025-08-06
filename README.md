@@ -30,10 +30,10 @@ For security reasons:
 To upload images (e.g., product photos), place your files inside the 'media/(path)/ directory:
 
 
-Creating Virtual Environment
+# Creating Virtual Environment
 It is recommended to create a Python virtual environment before running the project to isolate dependencies.
 
-Steps to create and activate a virtual environment:
+Steps to create and activate a virtual environment
 
 1.Open your terminal or command prompt.
 2. Navigate to your project directory:
