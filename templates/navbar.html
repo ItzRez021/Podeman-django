@@ -1,0 +1,49 @@
+  <header class="header">
+    <div class="header__container">
+      <a href="{% url 'home:home' %}" class="header__logo">KAIRA</a>
+      <nav class="header__nav" id="navMenu">
+        <ul class="header__menu">
+          <li class="header__item"><a href="{% url 'home:home' %}" class="header__link header__link--active">Home</a></li>
+          <li class="header__item"><a href="{% url 'home:store' %}" class="header__link">Shop</a></li>
+          <li class="header__item"><a href="{% url 'accounts:cart' %}" class="header__link">Cart</a></li>
+          <li class="header__item"><a href="{% url 'home:blog' %}" class="header__link">Blog</a></li>
+          {% if user.is_authenticated %}
+          <li class="header__item"><a href="{% url 'accounts:profile' user.pk %}" class="header__link">Profile</a></li>
+          {% else %}
+          <li class="header__item"><a href="{% url 'accounts:register' %}" class="header__link">Register</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <div class="header__icons">
+        {% if user.is_authenticated %}
+          <a href="{% url 'accounts:profile' user.pk %}" class="header__icon"><i class="fa fa-user"></i></a>
+        {% endif %}
+        
+        <!-- Search toggle -->
+        <a href="#" class="header__icon" id="searchToggle"><i class="fa fa-search"></i></a>
+
+        <!-- Search form -->
+        <form method="get" action="{% url 'home:store' %}" class="header__search-form" id="searchForm">
+          <input type="text" name="q" placeholder="Search products..." value="{{ query }}" class="header__search-input" />
+          <button type="submit" class="header__search-btn"><i class="fa fa-search"></i></button>
+
+          {% for cat in selected_categories %}
+            <input type="hidden" name="category" value="{{ cat }}">
+          {% endfor %}
+          {% if selected_price %}
+            <input type="hidden" name="price" value="{{ selected_price }}">
+          {% endif %}
+        </form>
+      </div>
+
+    </div>
+  </header>
+<script>
+  document.getElementById('searchToggle').addEventListener('click', function (e) {
+    e.preventDefault();
+    const form = document.getElementById('searchForm');
+    form.classList.toggle('active');
+  });
+</script>
+
+

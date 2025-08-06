@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ request.user.username }}'s Wishlist{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/style.css' %}"/>
+  <link rel="stylesheet" href="{% static 'accounts/styles/wishlist.css' %}"/>
+{% endblock %}
+{% block body %}
+  <header class="header">
+    <div class="header__container">
+      <div class="header__logo">KAIRA</div>
+      <nav class="header__nav" id="navMenu">
+        <ul class="header__menu">
+          <li class="header__item"><a href="{% url 'home:home' %}" class="header__link">Home</a></li>
+          <li class="header__item"><a href="{% url 'accounts:profile' user.pk %}" class="header__link">Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wishlist">
+    <div class="wishlist__container">
+      <h2 class="wishlist__heading">My Wishlist</h2>
+      {% if products %}
+      <div class="wishlist__items">
+        {% for prd in products %}
+        <div class="wishlist__item">
+          <img src="{{ prd.image.first.image.url }}" alt="Product" class="wishlist__img" />
+          <div class="wishlist__details">
+            <h3 class="wishlist__name">{{ prd.title }}</h3>
+            <p class="wishlist__price">{{ prd.price }}</p>
+            <div class="wishlist__buttons">
+              <a href="{% url 'home:detail' prd.pk %}" class="wishlist__view-btn">View</a>
+              <form action="{% url 'accounts:delwishlist' prd.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="productId" value="1" />
+                <button type="submit" class="wishlist__remove-btn">Remove</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+      {% else %}
+      <h3>Your Wishlist Is Empty</h3>
+      {% endif %}
+    </div>
+  </main>
+{% endblock %}

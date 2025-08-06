@@ -1,0 +1,247 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+
+/* Header */
+.header {
+  background: #fff;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #111;
+}
+
+.header__nav {
+  display: flex;
+}
+
+.header__menu {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.header__link--active5{
+  font-weight: bold;
+}
+
+.header__icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header__icon {
+  font-size: 18px;
+  color: #333;
+}
+
+.header__burger {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+
+.header__link--active5{
+  font-weight: bold; 
+}
+.header__link--active{
+  font-weight: normal;
+}
+.account-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.account-form {
+  flex: 2;
+  min-width: 300px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.account-sidebar {
+  flex: 1;
+  min-width: 250px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.account-sidebar h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #111;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.account-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.account-sidebar li {
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.account-sidebar li a {
+  text-decoration: none;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.account-sidebar li a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.profile__input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.profile__section {
+  margin-bottom: 30px;
+}
+
+.profile__section h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.profile__edit-btn,
+.profile__save-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s ease;
+}
+
+.profile__edit-btn:hover,
+.profile__save-btn:hover {
+  background-color: #222;
+}
+
+.avatar-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.avatar-container img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid #ccc;
+}
+
+.custom-file-label {
+  display: inline-block;
+  padding: 10px 16px;
+  font-size: 14px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.custom-file-label:hover {
+  background-color: #222;
+}
+
+.custom-file input[type="file"],
+.avatar-container input[type="file"] {
+  display: none;
+}
+
+.email-display {
+  display:flex;
+  
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.email-display label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.email-text {
+  display: inline-block;
+  margin-right: 10px;
+  color: #333;
+}
+
+.change-email-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.change-email-btn:hover {
+  background-color: #222;
+}
+
+@media (max-width: 768px) {
+  .account-container {
+    flex-direction: column;
+  }
+}

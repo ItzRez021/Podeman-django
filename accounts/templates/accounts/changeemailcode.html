@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Verify Code{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/verify-email.css' %}" />
+{% endblock %}
+{% block body %}
+  <main class="verify">
+    <div class="verify__container">
+      <h2 class="verify__title">Enter Verification Code</h2>
+      <p class="verify__subtitle">We sent a 6-digit code to your email.</p>
+
+      <form class="verify__form" action="{% url 'accounts:changeemailcode' %}" method="POST">
+        {% csrf_token %}
+        <div class="verify__inputs">
+          <input type="text" maxlength="1" pattern="[0-9]" required name="code1" />
+          <input type="text" maxlength="1" pattern="[0-9]" required name="code2" />
+          <input type="text" maxlength="1" pattern="[0-9]" required name="code3" />
+          <input type="text" maxlength="1" pattern="[0-9]" required name="code4" />
+          <input type="text" maxlength="1" pattern="[0-9]" required name="code5" />
+          <input type="text" maxlength="1" pattern="[0-9]" required name="code6" />
+        </div>
+        <button class="verify__submit" type="submit">Verify</button>
+      </form>
+
+      <div class="verify__links">
+        <a href="{% url 'accounts:changeemail' %}" class="verify__link">← Edit Email</a>
+      </div>
+    </div>
+  </main>
+  <script src="{% static 'accounts/scripts/verify-email.js' %}"></script>
+{% endblock %}

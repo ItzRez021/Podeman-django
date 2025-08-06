@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Blog{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/styles/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/styles/blog.css' %}">
+{% endblock %}
+{% block body %}
+{% if blog %}
+  <main class="blog">
+    <h1>Latest from Our Blog</h1>
+    <div class="blog__container">
+      {% for blg in blog %}
+      <div class="blog__card">
+        <img src="{{ blg.icon.url }}" alt="Blog Image" class="blog__img">
+        <div class="blog__content">
+          <h3 class="blog__title">{{ blg.title }}</h3>
+          <p class="blog__excerpt">{{ blg.info }}</p>
+          <a href="{% url 'home:blogpost' blg.pk %}" class="blog__btn">Read More</a>
+        </div>
+      </div>
+       {% endfor %}
+      <!-- Repeat blog__card as needed -->
+    </div>
+  </main>
+{% else %}
+  <h1 style="size: xxxlarge;">There Is No Blog</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/register.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+{% endblock %}
+{% block body %}
+  <header class="login-header">
+    <button class="back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+    <div class="login-header__logo">KAIRA</div>
+  </header>
+
+  <main class="register">
+    <div class="register__container">
+      <h1 class="register__title">Create a KAIRA Account</h1>
+      <form class="register__form" method="post" action="{% url 'accounts:register' %}">
+        {% csrf_token %}
+        <div class="register__group">
+          <label for="username" class="register__label">Username</label>
+          <input type="text" id="username" name="username" class="register__input" placeholder="Choose a username" required />
+        </div>
+        <div class="register__group">
+          <label for="email" class="register__label">Email Address</label>
+          <input type="email" id="email" name="email" class="register__input" placeholder="Enter your email" required />
+        </div>
+        <div class="register__group">
+          <label for="password" class="register__label">Password</label>
+          <input type="password" id="password" name="password_1" class="register__input" placeholder="Create a password" required />
+        </div>
+        <div class="register__group">
+          <label for="confirm-password" class="register__label">Confirm Password</label>
+          <input type="password" id="confirm-password" name="password_2" class="register__input" placeholder="Confirm your password" required />
+        </div>
+        <button type="submit" class="register__btn">Send Code</button>
+        <p class="register__login-link">
+          Already have an account? <a href="{% url 'accounts:login' %}">Login Here</a>
+        </p>
+      </form>
+    </div>
+  </main>
+<script src="{% static 'accounts/scripts/script.js' %}"></script>
+{% endblock %}

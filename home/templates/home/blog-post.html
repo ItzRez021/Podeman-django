@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Blog Post{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/styles/style.css' %}">
+{% endblock %}
+{% block body %}
+  <main class="post">
+    <div class="post__container">
+      <img src="{{ blog.icon.url }}" alt="Post image" class="post__img">
+      <h1 class="post__title">{{ blog.title }}</h1>
+      <div class="post__meta">{{ blog.creator.username }} | {{ blog.created_at }}</div>
+      <div class="post__content">
+        <p>{{ blog.info }}</p>
+      </div>
+    </div>
+  </main>
+{% endblock %}

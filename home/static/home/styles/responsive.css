@@ -1,0 +1,29 @@
+@media (max-width: 768px) {
+
+
+  .hero__img {
+    height: 250px;
+  }
+
+  .hero__title {
+    font-size: 24px;
+  }
+
+  .hero__btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .arrivals__items,
+  .best__items,
+  .recommend__items {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .arrivals__img,
+  .best__img,
+  .recommend__img {
+    height: 200px;
+  }
+
+}

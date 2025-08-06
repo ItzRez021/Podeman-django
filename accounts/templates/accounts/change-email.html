@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Change Email{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/style.css' %}"/>
+  <link rel="stylesheet" href="{% static 'accounts/styles/change-email.css' %}"/>
+{% endblock %}
+{% block body %}
+  <main class="change-email">
+    <div class="change-email__container">
+      <h2 class="change-email__title">Change Your Email</h2>
+
+      <form class="change-email__form" action="{% url 'accounts:changeemail' %}" method="POST">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Enter new email" required />
+        <button type="submit" class="change-email__btn">Send Verification Code</button>
+      </form>
+
+      <div class="change-email__links">
+        <a href="{% url 'accounts:profile' user.pk %}" class="change-email__link">← Back to Profile</a>
+      </div>
+    </div>
+  </main>
+{% endblock %}

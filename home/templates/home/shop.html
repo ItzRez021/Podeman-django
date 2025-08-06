@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Shop{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/styles/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/styles/shop.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/styles/responsive.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+{% endblock %}
+{% block body %}
+  <main class="shop">
+    <div class="shop__container">
+      <aside class="shop__filters">
+        <h3>Filter By</h3>
+        <div class="shop__filter-group">
+        <form method="get">
+        <label>
+          <input type="checkbox" name="category" value="Men"
+            {% if 'Men' in selected_categories %}checked{% endif %} />
+          Men
+        </label><br />
+        <label>
+          <input type="checkbox" name="category" value="Women"
+            {% if 'Women' in selected_categories %}checked{% endif %} />
+          Women
+        </label><br />
+        <label>
+          <input type="checkbox" name="category" value="Accessories"
+            {% if 'Accessories' in selected_categories %}checked{% endif %} />
+          Accessories
+        </label>
+
+
+      <h4>Price</h4>
+      <div class="shop__filter-group">
+        <label>
+          <input type="radio" name="price" value=""
+            {% if not selected_price %}checked{% endif %} />
+          All Prices
+        </label><br />
+        <label>
+          <input type="radio" name="price" value="0-50"
+            {% if selected_price == '0-50' %}checked{% endif %} />
+          $0 - $50
+        </label><br />
+        <label>
+          <input type="radio" name="price" value="51-100"
+            {% if selected_price == '51-100' %}checked{% endif %} />
+          $51 - $100
+        </label><br />
+        <label>
+          <input type="radio" name="price" value="101+"
+            {% if selected_price == '101+' %}checked{% endif %} />
+          $101+
+        </label>
+      </div>
+
+
+        <button class="shop__filter-btn" type="submit">Apply Filters</button>
+        </form>
+
+
+        </div>
+      </aside>
+
+      <section class="shop__products">
+      {% if product %}
+        <div class="shop__grid">
+          {% for prd in product %}
+            <a href="{% url 'home:detail' prd.pk %}" class="product-card">
+              <img src="{{ prd.image.first.image.url }}" alt="Product" class="product-card__img" />
+              <h4 class="product-card__title">{{ prd.title }}</h4>
+              <p class="product-card__price">{{ prd.price }}</p>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No products found.</p>
+      {% endif %}
+
+      </section>
+    </div>
+  </main>
+
+{% endblock %}

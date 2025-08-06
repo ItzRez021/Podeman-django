@@ -1,0 +1,106 @@
+.address {
+  padding: 40px 20px;
+  background: #f9f9f9;
+}
+
+.address__container {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.address__heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.address__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.address__card {
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.address__actions {
+  margin-top: 10px;
+}
+
+.address__delete-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.address__delete-btn:hover {
+  background: #c0392b;
+}
+
+.address__divider {
+  margin: 30px 0;
+}
+
+.address__subheading {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.address__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.address__form input {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.address__add-btn {
+  background: #111;
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.address__add-btn:hover {
+  background: #333;
+}
+
+@media (max-width: 600px) {
+  .address__container {
+    padding: 20px;
+  }
+
+  .address__card p {
+    font-size: 14px;
+  }
+
+  .address__add-btn,
+  .address__delete-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+a{
+    text-decoration: none;
+}

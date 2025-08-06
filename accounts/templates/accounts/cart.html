@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart_extras %}
+{% block title %}Cart{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/cart.css' %}">
+{% endblock %}
+{% block body %}
+<main class="cart">
+  <div class="cart__container">
+    <h2>Your Shopping Cart</h2>
+    {% if cart_items %}
+      <table class="cart__table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart_items %}
+            <tr>
+              <td>
+                {{ item.product.title }}
+                {% if item.size %}<br>Size: {{ item.size.size }}{% endif %}
+                {% if item.color %}<br>Color: {{ item.color.color }}{% endif %}
+              </td>
+              <td>{{ item.quantity }}</td>
+              <td>${{ item.product.price }}</td>
+              <td>${{ item.quantity|multiply:item.product.price }}</td>
+              <td>
+              <form action="{% url 'accounts:remove_from_cart' item.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="cart__remove">Remove</button>
+              </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="cart__total">Total: ${{ total }}</p>
+      <a href="#" class="cart__checkout">Proceed to Checkout</a>
+    {% else %}
+      <p>Your cart is empty.</p>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

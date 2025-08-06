@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home Page{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/styles/style.css' %}"/>
+  <link rel="stylesheet" href="{% static 'home/styles/responsive.css' %}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+{% endblock %}
+{% block body %}
+  <section class="hero">
+    <div class="hero__slider">
+      <div class="hero__slide">
+        <img class="hero__img" src="{{MEDIA_URL}}img/hero.png" alt="Hero Image" />
+        <div class="hero__text">
+          <h1 class="hero__title">CRIPCROP STYLE</h1>
+          <button class="hero__btn">Shop Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--categories-->
+
+  <section class="categories">
+  <div class="categories__item categories__item--men">
+    <img class="categories__item " src="{{MEDIA_URL}}img/Img (4).png" alt="">
+    <h2 class="categories__title">FOR MEN</h2>
+  </div>
+  <div class="categories__item categories__item--women">
+    <img class="categories__item " src="{{MEDIA_URL}}img/Category card (2).png" alt="">
+    <h2 class="categories__title">FOR WOMEN</h2>
+  </div>
+  <div class="categories__item categories__item--accessories">
+    <img class="categories__item " src="{{MEDIA_URL}}img/Category card (1).png" alt="">
+    <h2 class="categories__title">ACCESSORIES</h2>
+  </div>
+</section>
+
+<!--arrivals-->
+  <section class="arrivals">
+    <h2 class="arrivals__heading">Our New Arrivals</h2>
+    <div class="arrivals__items">
+      {% for prd in product|slice:":4" %}
+      <a href="{% url 'home:detail' prd.pk %}" class="arrivals__item">
+      {% for img in prd.image.all %}
+        {% if forloop.counter == 2 %}
+          <img src="{{ img.image.url }}" class="best__img" alt="Product">
+        {% endif %}
+      {% endfor %}
+        <p class="arrivals__name">{{ prd.title }}</p>
+        <p class="arrivals__price">{{ prd.price }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+<!--best-->
+<section class="best">
+  <h2 class="best__heading">Best Selling Items</h2>
+  <div class="best__items">
+    {% for prd in product|slice:":3" %}
+    <a href="{% url 'home:detail' prd.pk %}" class="best__item">
+      <img src="{{ prd.image.first.image.url }}" class="best__img" alt="Product">
+      <p class="best__name">{{ prd.title }}</p>
+      <p class="best__price">{{ prd.price }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<!--recommend-->
+<section class="recommend">
+  <h2 class="recommend__heading">You May Also Like</h2>
+  <div class="recommend__items">
+    {% for prd in product|slice:"3" %}
+    <a href="{% url 'home:detail' prd.pk %}" class="recommend__item">
+      <img src="{{ prd.image.first.image.url }}" alt="Recommended" class="recommend__img" />
+      <p class="recommend__name">{{ prd.title }}</p>
+      <p class="recommend__price">{{ prd.price }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<!--collection-->
+
+<section class="collection">
+  <div class="collection__wrapper">
+    <div class="collection__img">
+      <img src="{{MEDIA_URL}}img/rangga-cahya-nugraha-kBRzSkOk6eo-unsplash 2.png" alt="Winter Collection" />
+    </div>
+    <div class="collection__content">
+      <h2 class="collection__title">CLASSIC WINTER COLLECTION.</h2>
+      <p class="collection__text">
+        Explore elegance and warmth. Our winter collection features timeless pieces that elevate your style.
+      </p>
+      <button class="collection__btn">Explore</button>
+    </div>
+  </div>
+</section>
+<!--testimonial-->
+<section class="testimonial">
+  <div class="testimonial__slider">
+    <div class="testimonial__item">
+      <img src="{{MEDIA_URL}}img/mohamadreza-khashai-u4QLOLG1OKA-unsplash 4.png" alt="Customer" class="testimonial__img" />
+      <p class="testimonial__text">
+        “More than expected. Super soft and perfectly fitted. Will shop again!”
+      </p>
+    </div>
+  </div>
+</section>
+
+<!--blog-->
+
+<section class="blog">
+  <h2 class="blog__heading">Read Blog Posts</h2>
+  {% if blog %}
+  <div class="blog__items">
+    {% for blg in blog %}
+    <a href="{% url 'home:blogpost' blg.pk %}" class="blog__item">
+      <img src="{{ blg.icon.url }}" alt="Blog" class="blog__img" />
+      <p class="blog__title">{{ blg.title }}</p>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <h2 class="blog__heading">There Is No Blog !</h2>
+  {% endif %}
+</section>
+
+  <!-- Footer -->
+
+
+  <script>
+    const burgerBtn = document.getElementById("burgerBtn");
+    const navMenu = document.getElementById("navMenu");
+    burgerBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+  </script>
+  <script src="{% static 'home/scripts/script.js' %}"></script>
+{% endblock %}

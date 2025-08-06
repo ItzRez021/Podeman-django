@@ -1,0 +1,58 @@
+.add-address {
+  padding: 40px 20px;
+  background: #f9f9f9;
+}
+
+.add-address__container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.add-address__heading {
+  font-size: 24px;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #111;
+}
+
+.add-address__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-address__form input {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-address__btn {
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.add-address__btn:hover {
+  background: #333;
+}
+
+@media (max-width: 600px) {
+  .add-address__container {
+    padding: 20px;
+  }
+
+  .add-address__heading {
+    font-size: 20px;
+  }
+}

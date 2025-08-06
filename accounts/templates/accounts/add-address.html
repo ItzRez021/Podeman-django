@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Add Address{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/style.css' %}"/>
+  <link rel="stylesheet" href="{% static 'accounts/styles/add-address.css' %}"/>
+{% endblock %}
+{% block body %}
+  <header class="header">
+    <div class="header__container">
+      <div class="header__logo">KAIRA</div>
+      <nav class="header__nav" id="navMenu">
+        <ul class="header__menu">
+          <li class="header__item"><a href="{% url 'accounts:profile' user.pk %}" class="header__link">Back to Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="add-address">
+    <div class="add-address__container">
+      <h2 class="add-address__heading">Add New Address</h2>
+      <form class="add-address__form" action="{% url 'accounts:addadres' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="user_name" placeholder="Full Name" required />
+        <input type="text" name="city" placeholder="City" required />
+        <input type="text" name="street" placeholder="Street Address" required />
+        <input type="tel" name="number" placeholder="Phone Number" required />
+        <button type="submit" class="add-address__btn">Save Address</button>
+      </form>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ adress.user.username }}{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'accounts/styles/my-adrress.css' %}" />
+{% endblock %}
+{% block body %}
+  <header class="header">
+    <div class="header__container">
+      <div class="header__logo">KAIRA</div>
+      <nav class="header__nav" id="navMenu">
+        <ul class="header__menu">
+          <li class="header__item"><a href="{% url 'home:home' %}" class="header__link">Home</a></li>
+          <li class="header__item"><a href="{% url 'accounts:profile' user.pk %}" class="header__link">Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="address">
+    <div class="address__container">
+      <h2 class="address__heading">My Saved Addresses</h2>
+
+      <div class="address__list">
+        <!-- نمونه آدرس -->
+        {% if adres %}
+        {% for adr in adres %}
+        <div class="address__card">
+          <p><strong>{{ adr.user_name }}</strong></p>
+          <p>{{ adr.loc }}</p>
+          <p>Phone: 98{{ adr.number }}</p>
+          <form class="address__actions" method="POST" action="{% url 'accounts:deladress' adr.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="addressId" value="1" />
+            <button class="address__delete-btn" type="submit">Delete</button>
+          </form>
+        </div>
+        {% endfor %}
+        {% else %}
+          <div class="address__card">
+          <p><strong>You Have No Adress</strong></p>
+          </div>
+          
+        {% endif %}
+        <hr class="address__divider" />
+        <h3 class="address__subheading">Add New Address</h3>
+        <a  type="submit" href="{% url 'accounts:addadres' %}" class="address__add-btn">Add Address</a>
+
+  </main>
+{% endblock %}

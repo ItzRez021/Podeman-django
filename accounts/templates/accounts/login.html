@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/login.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+{% endblock %}
+{% block body %}
+  <header class="login-header">
+    <button class="back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+    <div class="login-header__logo">KAIRA</div>
+  </header>
+
+  <main class="login">
+    <div class="login__container">
+      <h1 class="login__title">Login to KAIRA</h1>
+      <form class="login__form" method="post" action="{% url 'accounts:login' %}" >
+        {% csrf_token %}
+        <div class="login__group">
+          <label for="email" class="login__label">Email Address</label>
+          <input type="email" id="email" name="email" class="login__input" placeholder="Enter your email" required />
+        </div>
+        <div class="login__group">
+          <label for="password" class="login__label">Password</label>
+          <input type="password" id="password" name="password" class="login__input" placeholder="Enter your password" required />
+        </div>
+        <div class="login__options">
+          <label class="login__checkbox">
+            <input type="checkbox" name="remember_me" /> Remember Me
+          </label>
+          <a href="#" class="login__forgot">Forgot Password?</a>
+        </div>
+        <button type="submit" class="login__btn">Login</button>
+        <p class="login__register-link">
+          Don't have an account? <a href="{% url 'accounts:register' %}">Register Now</a>
+        </p>
+      </form>
+    </div>
+  </main>
+    <script src="{% static 'accounts/scripts/script.js' %}"></script>
+{% endblock %}

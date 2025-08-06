@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9; /* Consistent background with login */
+  color: #333;
+}
+
+/* Header for Login/Register Pages - Reusing from login.css */
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.login-header__logo {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #333;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #f0f0f0;
+}
+
+.back-button i {
+  font-size: 18px;
+}
+
+/* Register Section */
+.register {
+  min-height: calc(100vh - 60px); /* Adjust for header height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.register__container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 420px;
+}
+
+.register__title {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.register__group {
+    margin-bottom: 10px;
+}
+
+.register__label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.register__input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.register__btn {
+  background-color: #000;
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.register__btn:hover {
+  background-color: #222;
+}
+
+.register__login-link {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.register__login-link a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.register__login-link a:hover {
+  text-decoration: underline;
+  color: #555;
+}
+
+@media (max-width: 480px) {
+  .register__container {
+    padding: 30px 20px;
+  }
+
+  .register__title {
+    font-size: 22px;
+  }
+
+  .login-header { /* Applies to register page too */
+    padding: 10px 20px;
+  }
+
+  .login-header__logo { /* Applies to register page too */
+    font-size: 18px;
+  }
+
+  .back-button { /* Applies to register page too */
+    font-size: 14px;
+  }
+
+  .back-button i { /* Applies to register page too */
+    font-size: 16px;
+  }
+}

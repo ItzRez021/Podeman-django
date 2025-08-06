@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ profile.username }}'s Profile{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/styles/profile.css' %}">
+{% endblock %}
+{% block body %}
+
+  <div class="account-container">
+    <div class="account-form">
+      <div class="profile__section">
+        <h3>Profile Information</h3>
+       <div class="avatar-container">
+  <div class="avatar-row">
+    <img id="user-avatar" src="{{ profile.icon.url }}" alt="Avatar">
+    <div>
+      <form class="change-email" action="{% url 'accounts:changeprofile' %}" enctype="multipart/form-data" method="post" >
+        {% csrf_token %}
+      <label class="custom-file-label" for="upload-avatar">Change Photo</label>
+      <input type="file" name="icon" id="upload-avatar" accept="image/*">
+    </div>
+  </div>
+</div>
+
+
+        <input type="text" id="edit-name" name="username" placeholder="Full Name" value="{{ profile.username }}" class="profile__input">
+
+        <div class="email-display">
+          <label>Email:</label>
+          <span id="current-email" class="email-text"></span>
+          
+           <a href="{% url 'accounts:changeemail' %}" class="change-email-btn">{{ profile.email }}</a> 
+          
+          
+        </div>
+
+        <button class="profile__save-btn" type="submit" onclick="saveProfile()">Save Changes</button>
+        </form>
+      </div>
+
+      <div class="profile__section">
+        <h3>Change Password</h3>
+        <form action="{% url 'accounts:changepass' %}" method="post">
+          {% csrf_token %}
+        <input type="password" name="old_password" placeholder="Current Password" class="profile__input">
+        <input type="password" name="new_password1" placeholder="New Password" class="profile__input">
+        <input type="password" name="new_password2" placeholder="Confirm New Password" class="profile__input">
+        <button type="submit" class="profile__edit-btn">Update Password</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="account-sidebar">
+      <h3>My Account</h3>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="cart.html">My Orders</a></li>
+        <li><a href="{% url 'accounts:wishlist' user.id %}">My Wishlist</a></li>
+        <li><a href="{% url 'accounts:adress' %}">My Addresses</a></li>
+        <li><a href="#">Support Tickets</a></li>
+        <li>  <a href="{% url 'accounts:logout' %}">Log Out</a> </li>
+      </ul>
+    </div>
+  </div>
+  <script src="{% static 'accounts/scripts/profil.js' %}"></script>
+{% endblock %}

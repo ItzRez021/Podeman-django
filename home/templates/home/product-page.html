@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ produt.title }}{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/styles/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/styles/peoduct-page.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+{% endblock %}
+{% block body %}
+  <!-- Product Section -->
+  <main class="product">
+    <div class="product__container">
+      <div class="product__gallery">
+        <img src="{{ product.image.all.first.image.url }}" alt="Main Image" class="product__image" id="mainImage" />
+        <div class="product__thumbnails">
+          {% for img in product.image.all %}
+          <img src="{{ img.image.url }}" class="product__thumb" onclick="changeImage(this)" />
+          {% endfor %}
+        </div>
+      </div>
+      <div class="product__details">
+        <h1 class="product__title">{{ product.title }}</h1>
+        <p class="product__price">{{ product.price }}</p>
+        <p class="product__desc">{{ product.info }}</p>
+
+        <div class="product__options">
+          <div class="product__colors">
+        <form action="{% url 'accounts:addtocart' product.id %}" method="post">
+          {% csrf_token %}
+          <div class="product__options">
+          <div class="product__colors">
+            <span class="product__colors-label">Colors:</span>
+            <div class="product__color-options">
+              {% for cl in product.color.all %}
+                <label class="color-label">
+                  <input type="radio" name="color" value="{{ cl.id }}" required />
+                  <span class="color-swatch" style="background-color: #{{ cl.color }};"></span>
+                </label>
+              {% endfor %}
+            </div>
+          </div>
+            <div class="product__sizes">
+              <label for="size">Size:</label>
+              <select id="size" name="size" class="product__select">
+                {% for sz in product.size.all %}
+                  <option value="{{ sz.size }}">{{ sz.size }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+        <div class="product__actions">
+          <form action="{% url 'accounts:addtocart' product.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="product__btn product__btn--add">Add to Cart</button>
+          </form>
+
+          <form action="{% url 'accounts:addtowish' product.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button class="product__btn product__btn--wishlist" type="submit" onclick="addToWishlist()">
+              <i class="fa fa-heart"></i>
+            </button>
+          </form>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- JS -->
+  <script>
+    function changeImage(thumb) {
+      const mainImage = document.getElementById("mainImage");
+      mainImage.src = thumb.src;
+    }
+
+    function addToWishlist() {
+      const product = {
+        id: 1,
+        name: "Classic Winter Jacket",
+        price: 120,
+        image: "img/product-1.jpg"
+      };
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      if (!wishlist.find(item => item.id === product.id)) {
+        wishlist.push(product);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        alert("Added to wishlist");
+      } else {
+        alert("Already in wishlist");
+      }
+    }
+  </script>
+{% endblock %}
